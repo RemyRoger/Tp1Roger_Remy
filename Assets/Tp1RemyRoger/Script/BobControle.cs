@@ -59,15 +59,17 @@ public class BobControle : MonoBehaviour
                 velocitePerso.y = GetComponent<Rigidbody2D>().velocity.y; //applique la vélocité y
             }
 
-            if (velocitePerso.x > 0.1f || velocitePerso.x < -0.1f)
+            if (velocitePerso.x > 0.1f || velocitePerso.x < -0.1f || velocitePerso.y > 0.1f || velocitePerso.y < -0.1f)
             {
-                GetComponent<Animator>().SetBool("marche", true); //acrtive l'animat
+                GetComponent<Animator>().SetBool("marche", true); //acrtive l'animation
             }
             else
             {
                 GetComponent<Animator>().SetBool("marche", false);
+
             }
- 
+            
+
 
             GetComponent<Rigidbody2D>().velocity = velocitePerso;
         }
