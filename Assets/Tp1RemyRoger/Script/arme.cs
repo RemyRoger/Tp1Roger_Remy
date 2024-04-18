@@ -14,23 +14,12 @@ public class arme : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        
+        if (Input.GetKeyDown(KeyCode.Mouse0)) //si le clic droit de la souris est appuyé
         {
-            GetComponent<SpriteRenderer>().flipX = true; //flip le sprite
-
+            GetComponent<Animator>().SetTrigger("attaqueFaux");
         }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-        }
-        if (Input.GetKey(KeyCode.Mouse0)) //si le clic droit de la souris est appuyé
-        {
-            GetComponent<BoxCollider2D>().enabled = true; //active le collider
-        }
-        else
-        {
-            GetComponent<BoxCollider2D>().enabled = false;
-        }
+       
     }
     
 }

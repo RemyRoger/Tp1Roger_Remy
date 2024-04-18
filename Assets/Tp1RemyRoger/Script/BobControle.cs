@@ -46,7 +46,7 @@ public class BobControle : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.W)) 
             {
-                velocitePerso.y = vitesseY;   //vitesse en y
+                velocitePerso.y = vitesseY;//vitesse en y
             }
 
             else if (Input.GetKey(KeyCode.S))
@@ -68,6 +68,11 @@ public class BobControle : MonoBehaviour
                 GetComponent<Animator>().SetBool("marche", false);
 
             }
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                
+            }
+
             
 
 
@@ -90,7 +95,7 @@ public class BobControle : MonoBehaviour
     {
         if (collision.gameObject.name == "Zombie")
         {   
-            estMort = true;
+            
         }
     }
     private void RelanceDuJeu()
