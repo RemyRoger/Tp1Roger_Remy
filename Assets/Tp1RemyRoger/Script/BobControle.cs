@@ -10,14 +10,13 @@ public class BobControle : MonoBehaviour
 {
     public float vitesseX;
     public float vitesseY;
-    private Vector2 velocitePerso;
-    private bool estMort;
+    
     public TextMeshProUGUI compteurTxt;
     int temps = 60;
     public GameObject arme;
     public GameObject arme2;
-    
-
+    private bool estMort;
+    public GameObject Bob;
     public Vector2 positionBob;
     // Start is called before the first frame update
     void Start()
@@ -28,104 +27,102 @@ public class BobControle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (!estMort) { //si il n'est pas mort
 
+        positionBob = GetComponent<Transform>().position;
+        if (!estMort) 
+        { 
             if (Input.GetKey(KeyCode.A)) //si la touche A est appuyés
             {
-                velocitePerso.x = -vitesseX;
-                GetComponent<SpriteRenderer>().flipX = true; //flip le sprite
+                positionBob.x = -vitesseX;
+                Bob.GetComponent<SpriteRenderer>().flipX = true; //flip le sprite
                 //transform.localScale = new Vector3(-1, 1, 1);
 
             }
             else if (Input.GetKey(KeyCode.D)) //si la touche D est appuyés
             {
-                velocitePerso.x = vitesseX;
-                GetComponent<SpriteRenderer>().flipX = false; //flip le sprite
+                positionBob.x = vitesseX;
+                Bob.GetComponent<SpriteRenderer>().flipX = false; //flip le sprite
                 //transform.localScale = new Vector3(1, 1, 1);
 
             }
             else
             {
-                velocitePerso.x = GetComponent<Rigidbody2D>().velocity.x; //applique la vélocité x
+                positionBob.x = GetComponent<Rigidbody2D>().velocity.x; //applique la vélocité x
             }
             if (Input.GetKey(KeyCode.W)) 
             {
-                velocitePerso.y = vitesseY;//vitesse en y
+                positionBob.y = vitesseY;//vitesse en y
             }
 
             else if (Input.GetKey(KeyCode.S))
             {
-                velocitePerso.y = -vitesseY;
+                positionBob.y = -vitesseY;
 
             }
             else
             {
-                velocitePerso.y = GetComponent<Rigidbody2D>().velocity.y; //applique la vélocité y
+                positionBob.y = GetComponent<Rigidbody2D>().velocity.y; //applique la vélocité y
             }
-
-            if (velocitePerso.x > 0.1f || velocitePerso.x < -0.1f || velocitePerso.y > 0.1f || velocitePerso.y < -0.1f)
+            
+            if (positionBob.x > 0.1f || positionBob.x < -0.1f || positionBob.y > 0.1f || positionBob.y < -0.1f)
             {
-                GetComponent<Animator>().SetBool("marche", true); //acrtive l'animation
+                Bob.GetComponent<Animator>().SetBool("marche", true); //acrtive l'animation
             }
             else
             {
-                GetComponent<Animator>().SetBool("marche", false);
+                Bob.GetComponent<Animator>().SetBool("marche", false);
 
             }
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 
-            }
-            
-            GetComponent<Rigidbody2D>().velocity = velocitePerso;
         }
-        
+            
+        GetComponent<Rigidbody2D>().velocity = positionBob;
 
         if (estMort == true)
         {
-            GetComponent<Animator>().SetBool("mort", true); //animation de mort
-            Destroy(arme);
-            Destroy(arme2); //detruit l'objet arme
+            Bob.GetComponent<Animator>().SetBool("mort", true); //animation de mort
+            //Destroy(arme);
+            //Destroy(arme2); //detruit l'objet arme
             Invoke("RelanceDuJeu", 2f); //relance le jeu
         }
+
         if (temps == 0)
         {
             compteurTxt.gameObject.SetActive(false);
             estMort = true;
         }
-        positionBob = GetComponent<Transform>().position;
-        
-        if(positionBob.x >= 30)
+        }
+
+
+
+
+
+        /*if(positionBob.x >= 30)
         {
-            GetComponent<Transform>().position = new Vector2(-30f, positionBob.y);
+            new Vector2(-30f, positionBob.y);
         }
         if (positionBob.x <= -30)
         {
-            GetComponent<Transform>().position = new Vector2(30f, positionBob.y);
+            Bob.GetComponent<Transform>().position = new Vector2(30f, positionBob.y);
         }
 
         if (positionBob.y >= 20)
         {
-            GetComponent<Transform>().position = new Vector2(positionBob.x, -20f);
+            Bob.GetComponent<Transform>().position = new Vector2(positionBob.x, -20f);
         }
         if (positionBob.y <= -20)
         {
-            GetComponent<Transform>().position = new Vector2(positionBob.x, 20f);
-        }
+            Bob.GetComponent<Transform>().position = new Vector2(positionBob.x, 20f);
+        }*/
 
     }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "zombie")
-        {
-            estMort = true;
-        }
-    }
-    private void RelanceDuJeu()
+    void RelanceDuJeu()
     {
         SceneManager.LoadScene("Intro");
     }
+    
     void Comptage()
     {
         temps--;
