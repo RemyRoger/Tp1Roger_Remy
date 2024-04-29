@@ -23,4 +23,5 @@ public class IntroJeu : MonoBehaviour
     {
         SceneManager.LoadScene("Niveau1"); //lance la scène niveau 1
     }
+
 }

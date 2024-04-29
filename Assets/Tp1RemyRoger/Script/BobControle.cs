@@ -4,6 +4,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class BobControle : MonoBehaviour
 {
@@ -13,7 +14,11 @@ public class BobControle : MonoBehaviour
     private bool estMort;
     public TextMeshProUGUI compteurTxt;
     int temps = 60;
+    public GameObject arme;
+    public GameObject arme2;
+    
 
+    public Vector2 positionBob;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,16 +77,16 @@ public class BobControle : MonoBehaviour
             {
                 
             }
-
             
-
-
             GetComponent<Rigidbody2D>().velocity = velocitePerso;
         }
-        if(estMort == true)
+        
+
+        if (estMort == true)
         {
             GetComponent<Animator>().SetBool("mort", true); //animation de mort
-            Destroy(gameObject.transform.GetChild(1).gameObject); //detruit l'objet arme
+            Destroy(arme);
+            Destroy(arme2); //detruit l'objet arme
             Invoke("RelanceDuJeu", 2f); //relance le jeu
         }
         if (temps == 0)
@@ -89,13 +94,32 @@ public class BobControle : MonoBehaviour
             compteurTxt.gameObject.SetActive(false);
             estMort = true;
         }
+        positionBob = GetComponent<Transform>().position;
+        
+        if(positionBob.x >= 30)
+        {
+            GetComponent<Transform>().position = new Vector2(-30f, positionBob.y);
+        }
+        if (positionBob.x <= -30)
+        {
+            GetComponent<Transform>().position = new Vector2(30f, positionBob.y);
+        }
+
+        if (positionBob.y >= 20)
+        {
+            GetComponent<Transform>().position = new Vector2(positionBob.x, -20f);
+        }
+        if (positionBob.y <= -20)
+        {
+            GetComponent<Transform>().position = new Vector2(positionBob.x, 20f);
+        }
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Zombie")
-        {   
-            
+        if (collision.gameObject.tag == "zombie")
+        {
+            estMort = true;
         }
     }
     private void RelanceDuJeu()
