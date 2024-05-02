@@ -17,7 +17,9 @@ public class BobControle : MonoBehaviour
     public GameObject arme2;
     private bool estMort;
     public GameObject Bob;
+    public Vector2 velociteBob;
     public Vector2 positionBob;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,38 +35,38 @@ public class BobControle : MonoBehaviour
         { 
             if (Input.GetKey(KeyCode.A)) //si la touche A est appuyés
             {
-                positionBob.x = -vitesseX;
+                velociteBob.x = -vitesseX;
                 Bob.GetComponent<SpriteRenderer>().flipX = true; //flip le sprite
                 //transform.localScale = new Vector3(-1, 1, 1);
 
             }
             else if (Input.GetKey(KeyCode.D)) //si la touche D est appuyés
             {
-                positionBob.x = vitesseX;
+                velociteBob.x = vitesseX;
                 Bob.GetComponent<SpriteRenderer>().flipX = false; //flip le sprite
                 //transform.localScale = new Vector3(1, 1, 1);
 
             }
             else
             {
-                positionBob.x = GetComponent<Rigidbody2D>().velocity.x; //applique la vélocité x
+                velociteBob.x = GetComponent<Rigidbody2D>().velocity.x; //applique la vélocité x
             }
             if (Input.GetKey(KeyCode.W)) 
             {
-                positionBob.y = vitesseY;//vitesse en y
+                velociteBob.y = vitesseY;//vitesse en y
             }
 
             else if (Input.GetKey(KeyCode.S))
             {
-                positionBob.y = -vitesseY;
+                velociteBob.y = -vitesseY;
 
             }
             else
             {
-                positionBob.y = GetComponent<Rigidbody2D>().velocity.y; //applique la vélocité y
+                velociteBob.y = GetComponent<Rigidbody2D>().velocity.y; //applique la vélocité y
             }
             
-            if (positionBob.x > 0.1f || positionBob.x < -0.1f || positionBob.y > 0.1f || positionBob.y < -0.1f)
+            if (velociteBob.x > 0.1f || velociteBob.x < -0.1f || velociteBob.y > 0.1f || velociteBob.y < -0.1f)
             {
                 Bob.GetComponent<Animator>().SetBool("marche", true); //acrtive l'animation
             }
@@ -78,7 +80,7 @@ public class BobControle : MonoBehaviour
                 
         }
             
-        GetComponent<Rigidbody2D>().velocity = positionBob;
+        GetComponent<Rigidbody2D>().velocity = velociteBob;
 
         if (estMort == true)
         {
@@ -99,23 +101,23 @@ public class BobControle : MonoBehaviour
 
 
 
-        /*if(positionBob.x >= 30)
+        if(positionBob.x >= 30)
         {
-            new Vector2(-30f, positionBob.y);
+            GetComponent<Transform>().position = new Vector2(-30f, positionBob.y);
         }
         if (positionBob.x <= -30)
         {
-            Bob.GetComponent<Transform>().position = new Vector2(30f, positionBob.y);
+            GetComponent<Transform>().position = new Vector2(30f, positionBob.y);
         }
 
         if (positionBob.y >= 20)
         {
-            Bob.GetComponent<Transform>().position = new Vector2(positionBob.x, -20f);
+            GetComponent<Transform>().position = new Vector2(positionBob.x, -20f);
         }
         if (positionBob.y <= -20)
         {
-            Bob.GetComponent<Transform>().position = new Vector2(positionBob.x, 20f);
-        }*/
+            GetComponent<Transform>().position = new Vector2(positionBob.x, 20f);
+        }
 
     }
     void RelanceDuJeu()
