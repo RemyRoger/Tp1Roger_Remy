@@ -7,7 +7,8 @@ public class collisionPiece : MonoBehaviour
 {
     
     public AudioClip pieceSons;
-    public GameObject Bob;
+    //public GameObject Bob;
+    public GameObject piece;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +22,8 @@ public class collisionPiece : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "BobVide")
+       if(collision.gameObject.name == "BobVide")
         {
-            
-            
-            Bob.GetComponent<AudioSource>().PlayOneShot(pieceSons);
             Destroy(gameObject);
         }
     }

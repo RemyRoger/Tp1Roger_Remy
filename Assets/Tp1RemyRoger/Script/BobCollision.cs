@@ -14,6 +14,7 @@ public class BobCollision : MonoBehaviour
     public int pieceCollecter = 0;
     public TextMeshProUGUI PieceTxt;
     public AudioClip sonMort;
+    public AudioClip pieceSons;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,8 +51,10 @@ public class BobCollision : MonoBehaviour
         {
             pieceCollecter++;
             PieceTxt.text = pieceCollecter.ToString();
+            GetComponent<AudioSource>().PlayOneShot(pieceSons);
         }
         
+
     }
     void RelanceDuJeu()
     {

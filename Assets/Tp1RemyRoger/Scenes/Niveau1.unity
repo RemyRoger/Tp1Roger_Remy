@@ -2712,8 +2712,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -568.88, y: 353.18}
-  m_SizeDelta: {x: 200, y: 45.647}
+  m_AnchoredPosition: {x: -1017, y: 586}
+  m_SizeDelta: {x: 200, y: 58.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &266494398
 MonoBehaviour:
@@ -3779,7 +3779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 750, y: 354.27}
+  m_AnchoredPosition: {x: 1051.4, y: 591.54}
   m_SizeDelta: {x: 171.7641, y: 47.833}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &416416617
@@ -3869,7 +3869,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -43.337524, y: 0, z: 64.23807, w: -40.94507}
+  m_margin: {x: -40.71753, y: 0, z: 64.23807, w: -40.94507}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4519,7 +4519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 95.666, y: 341}
+  m_AnchoredPosition: {x: -357.67, y: 580.46}
   m_SizeDelta: {x: 191.3328, y: 47.8332}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &516488555
@@ -12111,8 +12111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef9f102c070da1409209e05ce8efb40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pieceSons: {fileID: 8300000, guid: af94fb3249a14e6439781910e5e9441b, type: 3}
-  Bob: {fileID: 70545547}
+  pieceSons: {fileID: 0}
+  piece: {fileID: 1461397678}
 --- !u!1 &1479274463
 GameObject:
   m_ObjectHideFlags: 0
@@ -17031,6 +17031,7 @@ MonoBehaviour:
   pieceCollecter: 0
   PieceTxt: {fileID: 416416617}
   sonMort: {fileID: 8300000, guid: c8a3fe17a6641ec48b38fb455a40a223, type: 3}
+  pieceSons: {fileID: 8300000, guid: af94fb3249a14e6439781910e5e9441b, type: 3}
 --- !u!82 &1845899744468785851
 AudioSource:
   m_ObjectHideFlags: 0

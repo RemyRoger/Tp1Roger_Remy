@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      piece_ore-removebg_0: 8126702527939005060
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
