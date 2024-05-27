@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tp1RemyRoger/Scenes/Niveau2.unity
     guid: 97f4621730347ff4c85fe3c9272617b5
+  - enabled: 1
+    path: Assets/Tp1RemyRoger/Scenes/Victoire.unity
+    guid: 9d64f64cf7e57274085f1b0c310bbf78
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

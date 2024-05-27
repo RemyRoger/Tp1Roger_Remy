@@ -22,9 +22,9 @@ public class collisionPiece : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-       if(collision.gameObject.name == "BobVide")
+       if(collision.gameObject.name == "BobVide") //collision entre la piece le game object BobVide et tous ses enfants
         {
-            Destroy(gameObject);
+            Destroy(gameObject); //detruit la piece
         }
     }
 }

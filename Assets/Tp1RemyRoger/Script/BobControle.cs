@@ -15,10 +15,12 @@ public class BobControle : MonoBehaviour
     int temps = 60;
     public GameObject arme;
     public GameObject arme2;
-    private bool estMort;
+    private bool estMort = false;
     public GameObject Bob;
     public Vector2 velociteBob;
     public Vector2 positionBob;
+    public AudioClip sonMort;
+    public TextMeshProUGUI mort;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,7 @@ public class BobControle : MonoBehaviour
     {
 
         positionBob = GetComponent<Transform>().position;
-        if (!estMort) 
+        if (!estMort) //désactive les déplacements du personnage lorsqu'il meurt
         { 
             if (Input.GetKey(KeyCode.A)) //si la touche A est appuyés
             {
@@ -53,12 +55,12 @@ public class BobControle : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.W)) 
             {
-                velociteBob.y = vitesseY;//vitesse en y
+                velociteBob.y = vitesseY;//monte le personnage en y
             }
 
             else if (Input.GetKey(KeyCode.S))
             {
-                velociteBob.y = -vitesseY;
+                velociteBob.y = -vitesseY; //descend le personnage en y
 
             }
             else
@@ -75,33 +77,29 @@ public class BobControle : MonoBehaviour
                 Bob.GetComponent<Animator>().SetBool("marche", false);
 
             }
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-                
+            GetComponent<Rigidbody2D>().velocity = velociteBob;
         }
-            
-        GetComponent<Rigidbody2D>().velocity = velociteBob;
 
-        if (estMort == true)
+        if (estMort == true) //si il est mort
         {
             Bob.GetComponent<Animator>().SetBool("mort", true); //animation de mort
-            //Destroy(arme);
-            //Destroy(arme2); //detruit l'objet arme
+            Destroy(arme);
+            Destroy(arme2); //detruit l'objet arme
             Invoke("RelanceDuJeu", 2f); //relance le jeu
+            GetComponent<AudioSource>().PlayOneShot(sonMort); //joue le son de mort du personnage
+            mort.gameObject.SetActive(true); //active le texte de mort
         }
 
-        if (temps == 0)
+        if (temps <= 0) //si il n'y a plus de temps le personnage meurt
         {
-            compteurTxt.gameObject.SetActive(false);
+            compteurTxt.gameObject.SetActive(false); //désactive le compteur
             estMort = true;
         }
-        }
 
 
 
-
-
-        if(positionBob.x >= 30)
+        //permet de repositionner le personnage lorsqu'il dépasse certaines limites de la scène
+        if (positionBob.x >= 30)
         {
             GetComponent<Transform>().position = new Vector2(-30f, positionBob.y);
         }
@@ -120,12 +118,13 @@ public class BobControle : MonoBehaviour
         }
 
     }
-    void RelanceDuJeu()
+
+    void RelanceDuJeu() //lance la scène d'intro lorsqu'il meurt
     {
         SceneManager.LoadScene("Intro");
     }
     
-    void Comptage()
+    void Comptage() //enlève -1 au minuteur
     {
         temps--;
         compteurTxt.text = temps.ToString();
